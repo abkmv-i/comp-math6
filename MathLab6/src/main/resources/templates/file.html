@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+        integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+  <!-- The loading of KaTeX is deferred to speed up page rendering -->
+  <script src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+          integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+          crossorigin="anonymous"></script>
+
+  <!-- To automatically render math in text elements, include the auto-render extension: -->
+  <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/contrib/auto-render.min.js"
+          integrity="sha384-yACMu8JWxKzSp/C1YV86pzGiQ/l1YUfE8oPuahJQxzehAjEt2GiQuy/BIvl9KyeF" crossorigin="anonymous"
+          onload="renderMathInElement(document.body);"></script>
+  <style>
+    .input {
+      background: #3FD2A3; /* Цвет фона */
+      border: 1px solid #7a7b7e; /* Параметры рамки */
+      text-align: center;
+      border-radius: 20px;
+      box-shadow: 0 0 4px 3px #7a7b7e;
+      font-size: 25px;
+      color: #19674D;
+    }
+    h2 {
+      color: #19674D;
+      text-align: center;
+    }
+
+    table {
+      color: #19674D;
+      padding: 2px;
+      font-size: 25px;
+      width: 100%;
+    }
+
+    th, td, tr {
+      font-size: 25px;
+      text-align: center;
+      width: auto;
+    }
+
+    .but {
+      background: #3FD2A3; /* Цвет фона */
+      border: 1px solid #7a7b7e; /* Параметры рамки */
+      border-radius: 30px;
+      box-shadow: 0 0 4px 5px #7a7b7e; /* Параметры свечения */
+      font-size: 25px;
+      text-decoration: none;
+      padding: 10px;
+      color: #19674D;
+      text-align: center;
+    }
+
+    .imgs {
+      align-content: center;
+    }
+  </style>
+</head>
+<body>
+<form action="#" th:action="@{/resultFiles}" th:object="${file}" th:method="GET" enctype="multipart/form-data">
+  <table>
+    <tr>
+      <td></td>
+      <td>Выбор метода решения:</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <input type="radio" th:field="*{method}" value="1"/>
+        <label>Эйлера</label>
+      </td>
+      <td>
+
+        <input type="radio" th:field="*{method}" value="2"/>
+        <label>Рунге</label>
+      </td>
+      <td>
+        <input type="radio" th:field="*{method}" value="3"/>
+        <label>Милана</label>
+      </td>
+    </tr>
+    <tr>
+
+      <td></td>
+      <td>Выбор функции:</td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>
+        <div class="input">
+          <label>1:</label>
+          <input type="radio" th:field="*{numberOfFunction}" value="1"/>
+          \(e^x + 2y\)<br>
+        </div>
+      </td>
+      <td>
+        <div class="input">
+          <label>2:</label>
+          <input type="radio" th:field="*{numberOfFunction}" value="2"/>
+          \(sin(x) + cos(y)\)<br>
+        </div>
+      </td>
+      <td>
+        <div class="input">
+          <label>3:</label>
+          <input type="radio" th:field="*{numberOfFunction}" value="3"/>
+          \(x^2 + 2y + e^x\)<br>
+        </div>
+      </td>
+    </tr>
+
+  </table>
+  <br>
+  <br>
+    <div class="file level-item">
+    <label class="file-label">
+      <input id="file_input" class="but" type="file" th:field="*{fileName}"/><br><br>
+    </label>
+  </div>
+  <span class="title is-3" style="color: red" id="error-file"></span>
+  <input class="but" type="submit" value="Расчитать"/>
+</form>
+</body>
+</html>
